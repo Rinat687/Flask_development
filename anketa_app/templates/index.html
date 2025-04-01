@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-primary text-white">
+                <h1 class="h4 mb-0">Анкета пользователя</h1>
+            </div>
+
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Имя</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Город</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Возраст</label>
+                        <input type="number" class="form-control" id="age" name="age" min="1" max="120" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="hobby" class="form-label">Хобби</label>
+                        <textarea class="form-control" id="hobby" name="hobby" rows="3" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Отправить</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Блок с карточками всех анкет -->
+        {% if ankets %}
+        <div class="ankets-list">
+            {% for anket in ankets|reverse %}
+            <div class="card shadow mb-3">
+                <div class="card-header bg-success text-white">
+                    <h2 class="h5 mb-0">Анкета #{{ loop.index }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Имя:</strong> {{ anket.name }}</p>
+                            <p><strong>Город:</strong> {{ anket.city }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Возраст:</strong> {{ anket.age }}</p>
+                            <p><strong>Хобби:</strong> {{ anket.hobby }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Добавлено {{ loop.index }} {{ loop.index|pluralize('анкету', 'анкеты', 'анкет') }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

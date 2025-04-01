@@ -1,0 +1,13 @@
+/* Можно добавить кастомные стили при необходимости */
+.card {
+    border-radius: 10px;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
